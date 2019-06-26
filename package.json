@@ -1,0 +1,25 @@
+{
+  "name": "api_node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/server.j",
+  "scripts": {
+    "test": "jest",
+    "dev": "set NODE_ENV=development nodemon src/server.js --ignore __tests__",
+    "start": "nodemon src/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.0.0",
+    "express": "^4.17.1",
+    "helmet": "^3.18.0",
+    "mongoose": "^5.5.12"
+  },
+  "devDependencies": {
+    "jest": "^24.8.0",
+    "nodemon": "^1.19.1"
+  }
+}
