@@ -1,4 +1,5 @@
 const mongoose = require("mongoose")
+const moment = require("moment")
 
 const TransactionSchema = mongoose.Schema({
   amount: {
@@ -31,11 +32,28 @@ const TransactionSchema = mongoose.Schema({
     required: [true, "Nome do titular do cartão é obrigatório!"]
   },
   card_expiration_date: {
-    type: Date,
+    type: String,
     required: [true, "Data de validade do cartão é obrigatório!"]
   }
 }, {
     timestamps: true
-  })
+  }
+)
+
+TransactionSchema.pre('save', () => {
+  this.setTheLastFourCardNumbers()
+  this.setformatExpirationDate()
+})
+
+TransactionSchema.methods = {
+  setTheLastFourCardNumbers() {
+    this.card_number = this.card_number.substr(-4)
+  },
+
+  //
+  setformatExpirationDate() {
+    this.card_expiration_date = moment(this.card_expiration_date).format('MMYYYY')
+  }
+}
 
 module.exports = mongoose.model("Transaction", TransactionSchema)
