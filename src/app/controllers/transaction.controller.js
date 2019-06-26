@@ -21,6 +21,18 @@ class TransactionController {
     }
   }
 
+  async findById(req, res){
+    try {
+      const { id } = req.params
+
+      const transaction = await Transaction.findById(id)
+
+      return res.json(transaction)
+    } catch(err){
+      return res.status(err.statusCode).json(err)
+    }
+  }
+
   async findBySearch(req, res) {
     try {
       const transactions = await Transaction.find()
@@ -38,6 +50,18 @@ class TransactionController {
       const transaction = await Transaction.findByIdAndUpdate(id, req.body)
 
       return res.json(transaction)
+    } catch (err) {
+      return res.status(err.statusCode).json(err)
+    }
+  }
+
+  async delete(req, res){
+    try {
+      const { id } = req.params
+
+      await Transaction.findByIdAndDelete(id)
+
+      return res.json({ message: 'Item deletado com sucesso!' })
     } catch (err) {
       return res.status(err.statusCode).json(err)
     }

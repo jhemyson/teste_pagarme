@@ -6,6 +6,7 @@ const express = require("express")
 const mongoose = require("mongoose")
 const cors = require("cors")
 const helmet = require("helmet")
+const morgan = require("morgan")
 const database_url = require("./config/database")
 
 /**
@@ -28,6 +29,7 @@ class AppController {
     this.express.use(helmet())
     this.express.use(cors())
     this.express.use(express.json())
+    this.express.use(morgan(':method :url :status :res[content-length] - :response-time ms'))
   }
 
   /**

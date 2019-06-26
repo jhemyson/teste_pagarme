@@ -18,6 +18,8 @@ const TransactionSchema = mongoose.Schema({
   },
   card_number: {
     type: String,
+    max: 4,
+    min: 4,
     required: [true, "Número do cartão é obrigatório!"]
   },
   card_cvv: {
@@ -40,20 +42,20 @@ const TransactionSchema = mongoose.Schema({
   }
 )
 
-TransactionSchema.pre('save', () => {
-  this.setTheLastFourCardNumbers()
-  this.setformatExpirationDate()
-})
+// TransactionSchema.pre('save', () => {
+//   this.setTheLastFourCardNumbers()
+//   this.setformatExpirationDate()
+// })
 
-TransactionSchema.methods = {
-  setTheLastFourCardNumbers() {
-    this.card_number = this.card_number.substr(-4)
-  },
+// TransactionSchema.methods = {
+//   setTheLastFourCardNumbers() {
+//     this.card_number = this.card_number.substr(-4)
+//   },
 
-  //
-  setformatExpirationDate() {
-    this.card_expiration_date = moment(this.card_expiration_date).format('MMYYYY')
-  }
-}
+//   //
+//   setformatExpirationDate() {
+//     this.card_expiration_date = moment(this.card_expiration_date).format('MMYYYY')
+//   }
+// }
 
 module.exports = mongoose.model("Transaction", TransactionSchema)

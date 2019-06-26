@@ -1,7 +1,9 @@
-const route = require("express").Router()
+const router = require("express").Router()
 
-route.get("/", (req, res) => {
+router.get("/", (req, res) => {
   res.send("Hello Api")
 })
 
-module.exports = route
+router.use("/1/", require("./transation.routes"))
+
+module.exports = router
