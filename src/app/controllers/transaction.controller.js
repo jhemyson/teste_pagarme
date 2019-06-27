@@ -21,51 +21,51 @@ class TransactionController {
     }
   }
 
-  async findById(req, res){
-    try {
-      const { id } = req.params
+  // async findById(req, res) {
+  //   try {
+  //     const { id } = req.params
 
-      const transaction = await Transaction.findById(id)
+  //     const transaction = await Transaction.findById(id)
 
-      return res.json(transaction)
-    } catch(err){
-      return res.status(400).json(err)
-    }
-  }
+  //     return res.json(transaction)
+  //   } catch (err) {
+  //     return res.status(400).json(err)
+  //   }
+  // }
 
-  async findBySearch(req, res) {
-    try {
-      const transactions = await Transaction.find()
+  // async findBySearch(req, res) {
+  //   try {
+  //     const transactions = await Transaction.find()
 
-      return res.status(transactions)
-    } catch (err) {
-      return res.status(400).json(err)
-    }
-  }
+  //     return res.status(transactions)
+  //   } catch (err) {
+  //     return res.status(400).json(err)
+  //   }
+  // }
 
-  async update(req, res) {
-    try {
-      const { id } = req.params
+  // async update(req, res) {
+  //   try {
+  //     const { id } = req.params
 
-      const transaction = await Transaction.findByIdAndUpdate(id, req.body)
+  //     const transaction = await Transaction.findByIdAndUpdate(id, req.body)
 
-      return res.json(transaction)
-    } catch (err) {
-      return res.status(400).json(err)
-    }
-  }
+  //     return res.json(transaction)
+  //   } catch (err) {
+  //     return res.status(400).json(err)
+  //   }
+  // }
 
-  async delete(req, res){
-    try {
-      const { id } = req.params
+  // async delete(req, res) {
+  //   try {
+  //     const { id } = req.params
 
-      await Transaction.findByIdAndDelete(id)
+  //     await Transaction.findByIdAndDelete(id)
 
-      return res.json({ message: 'Item deletado com sucesso!' })
-    } catch (err) {
-      return res.status(400).json(err)
-    }
-  }
+  //     return res.json({ message: 'Item deletado com sucesso!' })
+  //   } catch (err) {
+  //     return res.status(400).json(err)
+  //   }
+  // }
 }
 
 module.exports = new TransactionController()

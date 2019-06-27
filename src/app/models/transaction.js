@@ -34,27 +34,20 @@ const TransactionSchema = mongoose.Schema({
     required: [true, "Nome do titular do cartão é obrigatório!"]
   },
   card_expiration_date: {
-    type: String,
+    type: Date,
     required: [true, "Data de validade do cartão é obrigatório!"]
   }
-}, {
-    timestamps: true
-  }
+},
+  { timestamps: true }
 )
 
-TransactionSchema.pre('save', async function() {
+TransactionSchema.pre('save', async function () {
   await this.setTheLastFourCardNumbers()
-  await this.setformatExpirationDate()
 })
 
 TransactionSchema.methods = {
   async setTheLastFourCardNumbers() {
     this.card_number = await this.card_number.substr(-4)
-  },
-
-  //
-  async setformatExpirationDate() {
-    this.card_expiration_date = await moment(this.card_expiration_date).format('MMYYYY')
   }
 }
 
