@@ -5,5 +5,6 @@ router.get("/", (req, res) => {
 })
 
 router.use("/1/transactions", require("./transation.routes"))
+router.use("/1/payables", require("./payable.routes"))
 
 module.exports = router
