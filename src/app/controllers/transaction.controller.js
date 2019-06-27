@@ -7,7 +7,7 @@ class TransactionController {
 
       return res.json(transaction)
     } catch (err) {
-      return res.status(err.statusCode).json(err)
+      return res.status(400).json(err.errors)
     }
   }
 
@@ -17,7 +17,7 @@ class TransactionController {
 
       return res.json(transactions)
     } catch (err) {
-      return res.status(err.statusCode).json(err)
+      return res.status(400).json(err)
     }
   }
 
@@ -29,7 +29,7 @@ class TransactionController {
 
       return res.json(transaction)
     } catch(err){
-      return res.status(err.statusCode).json(err)
+      return res.status(400).json(err)
     }
   }
 
@@ -39,7 +39,7 @@ class TransactionController {
 
       return res.status(transactions)
     } catch (err) {
-      return res.status(err.statusCode).json(err)
+      return res.status(400).json(err)
     }
   }
 
@@ -51,7 +51,7 @@ class TransactionController {
 
       return res.json(transaction)
     } catch (err) {
-      return res.status(err.statusCode).json(err)
+      return res.status(400).json(err)
     }
   }
 
@@ -63,7 +63,7 @@ class TransactionController {
 
       return res.json({ message: 'Item deletado com sucesso!' })
     } catch (err) {
-      return res.status(err.statusCode).json(err)
+      return res.status(400).json(err)
     }
   }
 }

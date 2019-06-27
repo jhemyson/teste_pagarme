@@ -42,20 +42,20 @@ const TransactionSchema = mongoose.Schema({
   }
 )
 
-// TransactionSchema.pre('save', () => {
-//   this.setTheLastFourCardNumbers()
-//   this.setformatExpirationDate()
-// })
+TransactionSchema.pre('save', async function() {
+  await this.setTheLastFourCardNumbers()
+  await this.setformatExpirationDate()
+})
 
-// TransactionSchema.methods = {
-//   setTheLastFourCardNumbers() {
-//     this.card_number = this.card_number.substr(-4)
-//   },
+TransactionSchema.methods = {
+  async setTheLastFourCardNumbers() {
+    this.card_number = await this.card_number.substr(-4)
+  },
 
-//   //
-//   setformatExpirationDate() {
-//     this.card_expiration_date = moment(this.card_expiration_date).format('MMYYYY')
-//   }
-// }
+  //
+  async setformatExpirationDate() {
+    this.card_expiration_date = await moment(this.card_expiration_date).format('MMYYYY')
+  }
+}
 
 module.exports = mongoose.model("Transaction", TransactionSchema)

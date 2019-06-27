@@ -4,6 +4,6 @@ router.get("/", (req, res) => {
   res.send("Hello Api")
 })
 
-router.use("/1/", require("./transation.routes"))
+router.use("/1/transactions", require("./transation.routes"))
 
 module.exports = router
