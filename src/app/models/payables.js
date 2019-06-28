@@ -1,7 +1,4 @@
 const mongoose = require("mongoose")
-const moment = require("moment")
-
-const calculateProcessingRate = require("../repositories/calculate-processing-rate.repositorie")
 
 const PayablesSchema = mongoose.Schema({
   object: {
@@ -32,12 +29,5 @@ const PayablesSchema = mongoose.Schema({
 },
   { timestamps: true }
 )
-
-PayablesSchema.methods = {
-  setFee(payment_method) {
-    this.fee -= await calculateProcessingRate(this.amount, payment_method)
-  }
-}
-
 
 module.exports = mongoose.model('Payables', PayablesSchema)
