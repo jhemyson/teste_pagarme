@@ -1,5 +1,5 @@
 require("dotenv").config({
-  path: process.env.NODE_ENV === "test" ? ".env.teste" : ".env"
+  path: process.env.NODE_ENV == "test" ? ".env.test" : ".env"
 })
 
 const express = require("express")
@@ -7,7 +7,6 @@ const mongoose = require("mongoose")
 const cors = require("cors")
 const helmet = require("helmet")
 const morgan = require("morgan")
-const database_uri = require("./config/database")
 
 /**
  * Configurações da applicação
@@ -43,7 +42,7 @@ class AppController {
    * Inicia o banco de dados
    */
   _database() {
-    mongoose.connect(database_uri, {
+    mongoose.connect(process.env.DATABASE, {
       useNewUrlParser: true
     })
   }
@@ -52,8 +51,8 @@ class AppController {
    * Se houver erro, retorna em formato json
    */
   _exceptions() {
-    this.express.use(function(error, req, res, next){
-      if(error){
+    this.express.use(function (error, req, res, next) {
+      if (error) {
         return res.status(error.status).json(error)
       }
 
