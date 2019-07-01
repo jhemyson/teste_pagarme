@@ -1,6 +1,7 @@
 const Payables = require("../models/payables")
 const { calculateFee, calculatePaymentDate, defineDefaultStatus } = require("./helpers/payable.helper")
 const { getNonNullFilters } = require("./helpers/common.helper")
+const { mongoosePaginationOptions } = require("./helpers/pagination.helper")
 
 class PayablesRepository {
 
@@ -17,14 +18,18 @@ class PayablesRepository {
     })
   }
 
-  async findAll(){
-    return await Payables.find()
+  async findAll(request){
+    const pagination_options = mongoosePaginationOptions(request)
+
+    return await Payables.paginate({}, pagination_options)
   }
 
-  async findBySearch(filter_object){
+  async findBySearch(request, filter_object){
+    const pagination_options = mongoosePaginationOptions(request)
+
     const filters = getNonNullFilters(filter_object)
 
-    return await Payables.find(filters)
+    return await Payables.paginate(filters, pagination_options)
   }
 }
 

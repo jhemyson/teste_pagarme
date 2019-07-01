@@ -7,7 +7,7 @@ const mongoose = require("mongoose")
 const cors = require("cors")
 const helmet = require("helmet")
 const morgan = require("morgan")
-const database_url = require("./config/database")
+const database_uri = require("./config/database")
 
 /**
  * Configurações da applicação
@@ -43,7 +43,7 @@ class AppController {
    * Inicia o banco de dados
    */
   _database() {
-    mongoose.connect(process.env.DATABASE, {
+    mongoose.connect(database_uri, {
       useNewUrlParser: true
     })
   }

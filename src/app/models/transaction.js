@@ -1,13 +1,19 @@
 const mongoose = require("mongoose")
-const moment = require("moment")
+const mongoosePaginateV2 = require("mongoose-paginate-v2")
 
 const TransactionSchema = mongoose.Schema({
+  object: {
+    type: String,
+    default: 'transaction'
+  },
   amount: {
     type: Number,
+    min: 100,
     required: [true, "Valor da transação é obrigatório!"]
   },
   transaction_description: {
     type: String,
+    minLength: 4,
     maxLength: 200,
     required: [true, "Descrição da transação é obrigatório!"]
   },
@@ -41,14 +47,6 @@ const TransactionSchema = mongoose.Schema({
   { timestamps: true }
 )
 
-TransactionSchema.pre('save', async function () {
-  await this.setTheLastFourCardNumbers()
-})
-
-TransactionSchema.methods = {
-  async setTheLastFourCardNumbers() {
-    this.card_number = await this.card_number.substr(-4)
-  }
-}
+TransactionSchema.plugin(mongoosePaginateV2)
 
 module.exports = mongoose.model("Transaction", TransactionSchema)
