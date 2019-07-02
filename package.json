@@ -6,7 +6,7 @@
   "scripts": {
     "test": "set NODE_ENV=test && jest",
     "dev": "set NODE_ENV=development && nodemon src/server.js --ignore __tests__",
-    "start": "nodemon src/server.js"
+    "start": "set NODE_ENV=production && nodemon src/server.js"
   },
   "keywords": [],
   "author": "",

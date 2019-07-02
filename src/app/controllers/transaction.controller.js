@@ -1,5 +1,5 @@
 const TransactionRepository = require("../repositories/transaction.repository")
-const PayableRepository = require("../repositories/payables.repository")
+const PayableRepository = require("../repositories/payable.repository")
 
 class TransactionController {
   async create(req, res) {

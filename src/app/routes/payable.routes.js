@@ -1,9 +1,9 @@
 const router = require("express").Router()
 
-const PayablesController = require("../controllers/payables.controller")
+const PayableController = require("../controllers/payable.controller")
 
-router.post('', PayablesController.create)
-router.get('', PayablesController.findAll)
-router.get('/search', PayablesController.findBySearch)
+router.post('', PayableController.create)
+router.get('', PayableController.findAll)
+router.get('/search', PayableController.findBySearch)
 
 module.exports = router

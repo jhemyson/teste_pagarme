@@ -1,4 +1,5 @@
-const app = require("../../src/app")
+const app = require("../../../src/app")
+const Transaction = require("../../../src/app/models/transaction")
 
 const supertest = require("supertest")
 
@@ -17,6 +18,8 @@ describe('TransactionsControllers', () => {
       })
 
     expect(response_supertest.status).toBe(200)
+
+    await Transaction.findByIdAndDelete(response_supertest._id)
   })
 
   it('should be able to find all transactions', async () => {

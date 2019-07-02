@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 const mongoosePaginateV2 = require("mongoose-paginate-v2")
 
-const PayablesSchema = mongoose.Schema({
+const PayableSchema = mongoose.Schema({
   object: {
     type: String,
     default: 'payable'
@@ -31,6 +31,6 @@ const PayablesSchema = mongoose.Schema({
   { timestamps: true }
 )
 
-PayablesSchema.plugin(mongoosePaginateV2)
+PayableSchema.plugin(mongoosePaginateV2)
 
-module.exports = mongoose.model('Payables', PayablesSchema)
+module.exports = mongoose.model('Payables', PayableSchema)

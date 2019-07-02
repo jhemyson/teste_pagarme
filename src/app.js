@@ -1,6 +1,4 @@
-require("dotenv").config({
-  path: process.env.NODE_ENV == "test" ? ".env.test" : ".env"
-})
+require("dotenv").config()
 
 const express = require("express")
 const mongoose = require("mongoose")
@@ -14,13 +12,15 @@ const morgan = require("morgan")
 class AppController {
   constructor() {
     this.express = express()
+    this._database_env = process.env.NODE_ENV == 'test'
+      ? process.env.DATABASETEST
+      : process.env.DATABASE
 
     this._middlewares()
     this._routes()
     this._database()
     this._exceptions()
   }
-
   /**
    * Inicia os middlewares
    */
@@ -42,7 +42,7 @@ class AppController {
    * Inicia o banco de dados
    */
   _database() {
-    mongoose.connect(process.env.DATABASE, {
+    mongoose.connect(this._database_env, {
       useNewUrlParser: true
     })
   }

@@ -1,7 +1,7 @@
-const PayablesRepository = require("../repositories/payables.repository")
+const PayableRepository = require("../repositories/payable.repository")
 const TransactionRepository = require("../repositories/transaction.repository")
 
-class PayablesController {
+class PayableController {
   async create(req, res) {
     try {
       const { transaction_id } = req.body
@@ -12,7 +12,7 @@ class PayablesController {
         return res.status(404).json({ error: "Transação não encontrada" })
       }
 
-      const payable = await PayablesRepository.create(transaction)
+      const payable = await PayableRepository.create(transaction)
 
       return res.json(payable)
     } catch (err) {
@@ -22,7 +22,7 @@ class PayablesController {
 
   async findAll(req, res) {
     try {
-      const payables = await PayablesRepository.findAll(req)
+      const payables = await PayableRepository.findAll(req)
 
       return res.json(payables)
 
@@ -33,9 +33,9 @@ class PayablesController {
 
   async findBySearch(req, res) {
     try {
-      const { status, amount } = req.query
+      const { status, amount, transaction_id } = req.query
 
-      const payables = await PayablesRepository.findBySearch(req, { status, amount })
+      const payables = await PayableRepository.findBySearch(req, { status, amount, transaction_id })
 
       return res.json(payables)
     } catch(err){
@@ -44,4 +44,4 @@ class PayablesController {
   }
 }
 
-module.exports = new PayablesController()
+module.exports = new PayableController()
