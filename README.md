@@ -10,6 +10,8 @@
 - Para executar os testes: yarn test
 - Para executar o app: yarn start
 
+------------------------------------
+
 #Transações
 - Criando
 - POST: "/1/transactions"
@@ -23,10 +25,10 @@ ex:
 	"card_holder_name": "Jhemyson Sousa",
 	"card_expiration_date": "2020-12"
 }
-------------------------------------
+
 - Buscando todas
 - GET: "/1/transactions"
-
+------------------------------------
 
 #Pagáveis
 
@@ -38,11 +40,9 @@ ex:
 -- {
   "transaction_id": "id da trasação"
 }
-------------------------------------
 
 - Buscando todos
 -- GET: "/1/payables"
-------------------------------------
 
 - Buscando com filtros, podemos passamos os seguintes filtros:
 - status "waiting_funds" ou "paid"
