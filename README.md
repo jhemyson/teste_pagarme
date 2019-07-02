@@ -23,6 +23,7 @@ ex:
 	"card_holder_name": "Jhemyson Sousa",
 	"card_expiration_date": "2020-12"
 }
+------------------------------------
 - Buscando todas
 - GET: "/1/transactions"
 
@@ -34,14 +35,14 @@ ex:
 - Os pagáveis são criados automaticamente quando criamos uma nova transação,
   também podemos criar uma nova através do "id" de uma transação
 ex:
-- {
+-- {
   "transaction_id": "id da trasação"
 }
-
+------------------------------------
 
 - Buscando todos
-- GET: "/1/payables"
-
+-- GET: "/1/payables"
+------------------------------------
 
 - Buscando com filtros, podemos passamos os seguintes filtros:
 - status "waiting_funds" ou "paid"
